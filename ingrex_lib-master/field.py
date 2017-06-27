@@ -3,10 +3,10 @@ from ingrex import Intel, Utils
 def main():
     "main function"
     field = {
-        'minLngE6': 166071535,
-        'maxLngE6': 166793004,
-        'minLatE6': 39741368,
-        'maxLatE6': 40175495,
+      'minLngE6':234746932,
+      'minLatE6':488260510,
+      'maxLngE6':235755443,
+      'maxLatE6':488308821,
     }
     with open('cookies') as cookies:
         cookies = cookies.read().strip()

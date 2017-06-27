@@ -41,7 +41,7 @@ def transform(wgLat, wgLon):
     """
     a = 6378245.0
     ee = 0.00669342162296594323
-    if (outOfChina(wgLat, wgLon)):
+    if (outOfEurope(wgLat, wgLon)):
         mgLat = wgLat
         mgLon = wgLon
         return mgLat,mgLon
@@ -57,10 +57,10 @@ def transform(wgLat, wgLon):
     mgLon = wgLon + dLon
     return mgLat,mgLon
 
-def outOfChina(lat, lon):
-    if (lon < 72.004 or lon > 137.8347):
+def outOfEurope(lat, lon):
+    if (lon < -12.83 or lon > 41.74):
         return True
-    if (lat < 0.8293 or lat > 55.8271):
+    if (lat < 35.96 or lat > 71.187):
         return True
     return False
 
