@@ -31,7 +31,7 @@ m.drawcoastlines()
 with open('.\portails.csv', 'r') as to_read:
      csv_reader = csv.reader(to_read , delimiter= ';')
      tab = []
-     k=100
+     k=10000
      for line in csv_reader:
          if not (k):
             break 
@@ -47,15 +47,13 @@ n = len(tab)
 print(n)
 
 # Cette boucle va permettre de dessiner les 100 premiers portails avec leurs label sur la carte m
-for i in range (100):
-    lab = str(tab[i][2]) # On prends pour label l'ordre d'apparitions des portails dans le .csv
-    tmp_long  =float(tab[i][0])#on va chercher la latitude du portail ( 1 ere colonne du .csv)
-    tmp_lat =float(tab[i][1])  #on va chercher la longitude du portail (2eme colonne du .csv)
-    x,y = m(tmp_lat, tmp_long) # on retranscrit les infos précédentes en coordonnées de la carte m
-    m.plot(y,x , color = 'yellow', marker = 'D', label = 'lab') #Cette ligne permet de dessiner un point pour chaque portail.
-  #print(lab)
-  
-
+for i in range (10000):
+    lab = str(tab[i][2])                                        #On prends pour label l'ordre d'apparitions des portails dans le .csv
+    tmp_long  =float(tab[i][0])                                 #On va chercher la latitude du portail ( 1 ere colonne du .csv)
+    tmp_lat =float(tab[i][1])                                   #On va chercher la longitude du portail (2eme colonne du .csv)
+    x,y = m(tmp_lat, tmp_long)                                  #On retranscrit les infos précédentes en coordonnées de la carte m
+    m.plot(x, y, color = 'c', marker = 'v', label = 'lab')                #Cette ligne permet de dessiner un point pour chaque portail.
+    # print(lab)
 
 
 # print(tab)
