@@ -1,1 +1,35 @@
-Sur cette branche se trouve le travail concernant la partie statistique, étude des données, du projet.
+﻿Sur cette branche se trouve le travail concernant la partie statistique, étude des données, du projet. 
+Elle contient principalement 3 scripts python et 3 fichiers .csv:
+
+- names.csv regroupe les informations sur les joueurs et à la structure pseudo ; id
+
+- portails.csv regroupe les informations sur les portails et à la structure latitude,longitude ; id ; nom ; adresse
+
+- portails_IdGeo.csv contient les mêmes informations que le fichier précédent, auxquelles s'ajoute un id géographique déterminé par le script geographical_id. Cela correspond à des zones de 1km² sur toute la France.
+
+
+- Lecture_Ecriture.py contient les fonctions 
+
+copy qui recopie les premières lignes d'un fichier. Elle est utile pour générer de petits fichiers sur lesquels on peut tester les autres fonctions.
+
+htmlToCSV transforme un fichier de données au format html au format csv. Pour être le plus universel possible, la fonction prend en entrée un paramètre nb_info_par_ligne qui représente la taille d'une ligne dans le fichier de sortie.
+
+- geographical-id.py contient les coordonnées GPS d'une zone rectangulaire correspondant a la France ainsi que les fonctions
+
+dichotomie2D effectue une recherche dichotomique d'un portail dans une zone. Les paramètres d'entrée doivent être donnés en coordonnées cartésiennes, la précision en km.
+
+degreToRad et conversion il est facile de récupérer des données GPS en degré sur google map mais il est plus simple de travailler avec des coordonnées cartésiennes. Ces deux fonctions réalisent la conversion.
+
+id_geographique est la principale fonction du script. Il suffit de lancer son exécution pour obtenir un fichier avec les ids géographiques des portails pour une zone et une précision données.
+Il faut lui donner les coordonnées GPS de la zone que l'on souhaite étudier, google map donne latitude,longitude d'un point. Il faut récupérer latitude et longitude du coin inférieur gauche (considéré comme l'origine), la longitude du coin inférieur droit et la latitude du coin supérieur gauche.
+Un portail hors limite se verra attribuer l'id -1.
+
+visualisation permet une première visualisation basique de la densité de portail dans la console.
+
+- Visualisation_actions_joueur.py contient les fonctions
+
+portalFinder et playerFinder qui extraient respectivement les coordonnées d'un portail, l'id d'un joueur, à partir de l'id du portail et le pseudo du joueur.
+
+playerVisitedLocations enregistre dans des fichiers les lieux visités par un joueur pendant une période donnée. Il y a deux versions : l'une prend l'id d'un joueur, l'autre son pseudo. Attention, elle ne crée pas de dossier avec les fichiers enregistrés. Elle enregistre dans le répertoire courant
+
+save sert dans playerVisitedLocations elle est donc peu modulable. 

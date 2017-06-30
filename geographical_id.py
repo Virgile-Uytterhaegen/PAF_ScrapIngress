@@ -88,9 +88,9 @@ def conversion(origin_lat,origin_long,latitude,longitude):
 
 def id_geographique(fichier, o_lat,o_lon,x_lon,y_lat,precision):
     xmin = 0                                                            #xmin et ymin sont l'origine, c'est systematiquement (0,0)
-    xmax = conversion(o_lat,o_lon,o_lat,x_lon)                          #on extrait des coordonnees gps les coordonnes cartesiennes
+    xmax = conversion(o_lat,o_lon,o_lat,x_lon)                          #on extrait depuis les coordonnees gps les coordonnes cartesiennes
     ymin = 0                                                            #de la zone a cartographier (sert pour la dichotomie)
-    ymax = conversion(o_lat,o_lon,y_lat,o_lon)
+    ymax = conversion(o_lat,o_lon,y_lat,o_lon)                          #le fichier en sortie sera portails_IdGeo.csv
     with open('portails_IdGeo.csv','w') as fic:
         with open(fichier, 'r') as to_read:
             csv_reader = csv.reader(to_read, delimiter = ';')

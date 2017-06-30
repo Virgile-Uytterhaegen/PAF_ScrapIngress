@@ -28,11 +28,12 @@ def playerFinder(ficIn,pseudo):
 # Recuperation de la liste des points visités par un joueur
 
 ''' La periode est donnee en jour et sera convertie en secondes par la fonction.
-    Repetition est le nombre de periode que l'on veut analyser. Par exemple playerVisitedLocations(1,7,4) va creer 
-    4 fichiers (un par periode de 7 jours) comportant les coordoonees auquelles le joueur s'est rendu'''
+    Repetition est le nombre de periode que l'on veut analyser et vaut 1 par defaut. 
+    Par exemple playerVisitedLocations(1,7,4) va creer 4 fichiers (un par periode de 7 jours) 
+    comportant les coordoonees auquelles le joueur s'est rendu'''
 
 
-def playerVisitedLocations(joueurId,period,repetition):
+def playerVisitedLocations(joueurId,period,repetition = 1):
     period = period*24*3600                                  #le timestamp fonctionne en seconde
     with open('Actions_triees_par_joueur/'+str(joueurId)+'.csv','r') as to_read:
         csv_reader = csv.reader(to_read,delimiter = ';')
@@ -51,11 +52,11 @@ def playerVisitedLocations(joueurId,period,repetition):
                     visitedLocations = {}
         
                 currentLocations = [line[4]]                 #traitement generique des portails: 
-                if (len(line)==6):                           #on ajoute le portail au dictionnaire s'il n'y est pas
-                    currentLocations.append(line[5])         #on compte egalement le nombre de fois qu'un joueur a visiter un portail
+                if (len(line)==6):                           #le joueur a fait un lien, on considere qu'il s'est rendu aussi au 2e portail
+                    currentLocations.append(line[5])         
                 for loc in currentLocations:
-                    if not loc in visitedLocations:
-                        visitedLocations[loc] = (line[0],1)
+                    if not loc in visitedLocations:          #on ajoute le portail au dictionnaire s'il n'y est pas (coordonnees,nb de visites)
+                        visitedLocations[loc] = (line[0],1)  #on compte egalement le nombre de fois qu'un joueur a visite un portail
                     else:
                         visitedLocations[loc] = (visitedLocations[loc][0],visitedLocations[loc][1]+1)
   
